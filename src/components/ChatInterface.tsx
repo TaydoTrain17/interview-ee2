@@ -25,11 +25,11 @@ export default function ChatInterface() {
       // @ts-expect-error - SpeechRecognition is not in the TypeScript types yet
       const SpeechRecognitionAPI = window.SpeechRecognition || window.webkitSpeechRecognition;
       if (SpeechRecognitionAPI) {
-        recognitionRef.current = new SpeechRecognitionAPI();
-        recognitionRef.current.continuous = true;
-        recognitionRef.current.interimResults = true;
+        const recognition = new SpeechRecognitionAPI();
+        recognition.continuous = true;
+        recognition.interimResults = true;
 
-        recognitionRef.current.onresult = (event: SpeechRecognitionEvent) => {
+        recognition.onresult = (event: SpeechRecognitionEvent) => {
           const transcript = Array.from(event.results)
             .map((result: SpeechRecognitionResult) => result[0])
             .map((result: SpeechRecognitionAlternative) => result.transcript)
@@ -38,10 +38,12 @@ export default function ChatInterface() {
           setInput(transcript);
         };
 
-        recognitionRef.current.onerror = (event: Event) => {
+        recognition.onerror = (event: Event) => {
           console.error('Speech recognition error', event);
           setIsListening(false);
         };
+
+        recognitionRef.current = recognition;
       }
     }
   }, []);
