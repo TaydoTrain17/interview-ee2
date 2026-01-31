@@ -1,7 +1,7 @@
 interface SpeechRecognitionEvent extends Event {
   results: SpeechRecognitionResultList;
   resultIndex: number;
-  interpretation: any;
+  interpretation: unknown;
 }
 
 interface SpeechRecognitionResultList {
@@ -24,7 +24,7 @@ interface SpeechRecognitionAlternative {
 
 interface SpeechRecognition extends EventTarget {
   continuous: boolean;
-  grammars: any;
+  grammars: SpeechGrammarList;
   interimResults: boolean;
   lang: string;
   maxAlternatives: number;
@@ -44,12 +44,24 @@ interface SpeechRecognition extends EventTarget {
   abort(): void;
 }
 
-declare var SpeechRecognition: {
+interface SpeechGrammarList {
+  length: number;
+  item(index: number): SpeechGrammar;
+  addFromString(string: string, weight?: number): void;
+  addFromURI(src: string, weight?: number): void;
+}
+
+interface SpeechGrammar {
+  src: string;
+  weight: number;
+}
+
+declare const SpeechRecognition: {
   prototype: SpeechRecognition;
   new(): SpeechRecognition;
 };
 
-declare var webkitSpeechRecognition: {
+declare const webkitSpeechRecognition: {
   prototype: SpeechRecognition;
   new(): SpeechRecognition;
 }; 

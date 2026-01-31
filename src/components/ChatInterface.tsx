@@ -22,23 +22,23 @@ export default function ChatInterface() {
   // Speech recognition setup
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      // @ts-ignore - SpeechRecognition is not in the TypeScript types yet
-      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-      if (SpeechRecognition) {
-        recognitionRef.current = new SpeechRecognition();
+      // @ts-expect-error - SpeechRecognition is not in the TypeScript types yet
+      const SpeechRecognitionAPI = window.SpeechRecognition || window.webkitSpeechRecognition;
+      if (SpeechRecognitionAPI) {
+        recognitionRef.current = new SpeechRecognitionAPI();
         recognitionRef.current.continuous = true;
         recognitionRef.current.interimResults = true;
-        
-        recognitionRef.current.onresult = (event: any) => {
+
+        recognitionRef.current.onresult = (event: SpeechRecognitionEvent) => {
           const transcript = Array.from(event.results)
-            .map((result: any) => result[0])
-            .map((result: any) => result.transcript)
+            .map((result: SpeechRecognitionResult) => result[0])
+            .map((result: SpeechRecognitionAlternative) => result.transcript)
             .join('');
-          
+
           setInput(transcript);
         };
-        
-        recognitionRef.current.onerror = (event: any) => {
+
+        recognitionRef.current.onerror = (event: Event) => {
           console.error('Speech recognition error', event);
           setIsListening(false);
         };
