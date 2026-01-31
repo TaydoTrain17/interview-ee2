@@ -1,36 +1,60 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# AI Chat Assistant
+
+A modern web application that allows users to have conversations with an AI assistant using both text and voice interactions.
+
+## Features
+
+- **Text-based Chat**: Type messages and get real-time responses from the AI
+- **Voice Input**: Use your microphone to speak to the AI
+- **Text-to-Speech**: Have the AI responses read aloud
+- **Responsive Design**: Works on desktop and mobile devices
+
+## Technologies Used
+
+- **Next.js**: React framework for the frontend
+- **TypeScript**: For type-safe code
+- **Tailwind CSS**: For styling
+- **OpenAI API**: For generating AI chat responses
+- **Web Speech API**: For speech recognition and text-to-speech
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
 
-```bash
+- Node.js 18.x or higher
+- An OpenAI API key
+
+### Installation
+
+1. Clone the repository
+2. Install dependencies:
+   ```
+   npm install
+   ```
+3. Create a `.env.local` file in the root directory with your OpenAI API key:
+   ```
+   OPENAI_API_KEY=your_api_key_here
+   ```
+
+### Running the Application
+
+```
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) in your browser to see the application.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Usage
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. Type a message in the input field and click the send button, or press Enter
+2. Click the microphone button to start voice input
+3. Click the play button on an AI response to have it read aloud
 
-## Learn More
+## Browser Compatibility
 
-To learn more about Next.js, take a look at the following resources:
+- Speech recognition features work best in Chrome, Edge, and Safari
+- Text-to-speech is supported in most modern browsers
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## License
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+MIT
